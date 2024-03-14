@@ -4,7 +4,7 @@ Djotは軽量なマークアップ構文です。この機能のほとんどは[
 
 このプロジェクトは、私（[jgm](https://johnmacfarlane.net/)）がエッセイ「[Beyond Markdown](https://johnmacfarlane.net/beyond-markdown.html)」で提案したアイデアのいくつかを実装する試みとして始まりました。(以下の「[理論的根拠](#理論的根拠)」を参照してください。)
 
-このリポジトリには、[構文の説明](https://htmlpreview.github.io/?https://github.com/dai/djot/blob/master/doc/ja-syntax.html)、[チートシート](https://github.com/dai/djot/blob/main/doc/ja-cheatsheet.md)、およびdjotとMarkdownの主な違いの概要を説明するMarkdownユーザー向けの[クイックスタート](https://github.com/dai/djot/blob/main/doc/ja-quick-start-for-markdown-users.md)が含まれています。
+このリポジトリには、[構文の説明](https://htmlpreview.github.io/?https://github.com/dai/djot/blob/master/doc/ja-syntax.html)、[チートシート](https://github.com/dai/djot/blob/main/doc/ja-cheatsheet.md)、およびdjotとMarkdownの主な違いの概要を説明するMarkdownユーザー向けの[クイックスタートガイド](https://github.com/dai/djot/blob/main/doc/ja-quick-start-for-markdown-users.md)が含まれています。
 
 ローカルにインストールしなくても、[djotプレイグラウンド](https://djot.net/playground/)でdjotを試すことができます。
 
@@ -217,4 +217,4 @@ djotのvim構文強調表示定義は、`editors/vim/` で提供されていま�
 
 ## 連絡
 
-誤訳などお気づきの点がありましたら、開発者の [jgm](https://github.com/jgm/djoths) さんではなく、翻訳を行った [dai](https://github.com/dai) に連絡をしてください。
+誤訳などお気づきの点がありましたら、開発者の [jgm](https://github.com/jgm) さんではなく、翻訳を行った [dai](https://github.com/dai) に連絡をしてください。
