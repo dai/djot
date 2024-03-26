@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Djot syntax reference</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">html {
+line-height: 1.4;
+font-family: Georgia, serif;
+font-size: 18px;
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+display: flex;
+margin: 0 auto;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 1em;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h1 {
+margin-top: 0.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+h1 {
+font-size: 28px;
+}
+h2 {
+font-size: 24px;
+}
+h3 {
+font-size: 20px;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+font-size: 85%;
+margin: 0;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+tr {
+vertical-align: top;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+section.level1 {
+max-width: 44em;
+position: relative; 
+order: 1;
+max-width: 48em;
+min-width: 300px;
+padding-bottom: 60em; 
+}
+#TOC {
+order: 2;
+position: sticky;
+top: 2rem;
+max-width: 20em;
+min-width: 12em;
+align-self: baseline;
+background: transparent;
+}
+#TOC > ul {
+margin-top: 1em;
+margin-left: 2em;
+height: 96vh;
+overflow-y: scroll;
+font-size: 14px;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+.example {
+display: flex;
+border: 1px solid grey;
+border-radius: 5px;
+}
+@media (max-width: 860px) {
+.example {
+flex-direction: column;
+}
+}
+.example pre, .example div {
+padding: 0pt 12pt 0pt 12pt;
+}
+.example .html {
+padding: 0;
+flex: 1;
+flex-wrap: wrap;
+}
+.example .djot {
+padding: 0;
+flex: 1;
+flex-wrap: wrap;
+background-color: #ddd;
+}
+.example code {
+font-size: 78%;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#djot-syntax-reference" id="toc-djot-syntax-reference">Djot構文リファレンス</a>
+<ul>
+<li><a href="#inline-syntax" id="toc-inline-syntax">インライン構文</a>
+<ul>
+<li><a href="#precedence" id="toc-precedence">優先順位</a></li>
+<li><a href="#ordinary-text" id="toc-ordinary-text">通常テキスト</a></li>
+<li><a href="#link" id="toc-link">リンク</a></li>
+<li><a href="#image" id="toc-image">画像</a></li>
+<li><a href="#autolink" id="toc-autolink">自動リンク</a></li>
+<li><a href="#verbatim" id="toc-verbatim">Verbatim</a></li>
+<li><a href="#emphasisstrong" id="toc-emphasisstrong">強調と強い強調（Emphasis/strong）</a></li>
+<li><a href="#highlighted" id="toc-highlighted">ハイライト（mark）</a></li>
+<li><a href="#supersubscript" id="toc-supersubscript">上付きと下付き（Super/subscript）</a></li>
+<li><a href="#insertdelete" id="toc-insertdelete">挿入と取り消し線（Insert/delete）</a></li>
+<li><a href="#smart-punctuation" id="toc-smart-punctuation">スマート句読点</a></li>
+<li><a href="#math" id="toc-math">数式</a></li>
+<li><a href="#footnote-reference" id="toc-footnote-reference">脚注参照</a></li>
+<li><a href="#line-break" id="toc-line-break">改行</a></li>
+<li><a href="#comment" id="toc-comment">コメント</a></li>
+<li><a href="#symbols" id="toc-symbols">記号</a></li>
+<li><a href="#raw-inline" id="toc-raw-inline">Rawインライン</a></li>
+<li><a href="#span" id="toc-span">スパン</a></li>
+<li><a href="#inline-attributes" id="toc-inline-attributes">インライン属性</a></li>
+</ul></li>
+<li><a href="#block-syntax" id="toc-block-syntax">ブロック構文</a>
+<ul>
+<li><a href="#paragraph" id="toc-paragraph">段落</a></li>
+<li><a href="#heading" id="toc-heading">見出し</a></li>
+<li><a href="#block-quote" id="toc-block-quote">引用ブロック</a></li>
+<li><a href="#list-item" id="toc-list-item">リスト項目</a></li>
+<li><a href="#list" id="toc-list">リスト</a></li>
+<li><a href="#code-block" id="toc-code-block">コードブロック</a></li>
+<li><a href="#thematic-break" id="toc-thematic-break">水平線（hr）</a></li>
+<li><a href="#raw-block" id="toc-raw-block">Rawブロック</a></li>
+<li><a href="#div" id="toc-div">Div</a></li>
+<li><a href="#pipe-table" id="toc-pipe-table">パイプテーブル</a></li>
+<li><a href="#reference-link-definition" id="toc-reference-link-definition">参照リンクの定義</a></li>
+<li><a href="#footnote" id="toc-footnote">脚注</a></li>
+<li><a href="#block-attributes" id="toc-block-attributes">ブロックの属性</a></li>
+<li><a href="#links-to-headings" id="toc-links-to-headings">見出しへのリンク</a></li>
+</ul></li>
+<li><a href="#nesting-limits" id="toc-nesting-limits">ネストの制限</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="djot-syntax-reference" class="level1">
+<h1>Djot構文リファレンス</h1>
+<section id="inline-syntax" class="level2">
+<h2>インライン構文</h2>
+<section id="precedence" class="level3">
+<h3>優先順位</h3>
+<p>ほとんどのインライン構文は、インラインコンテンツを囲む前後の区切り文字によって定義され、強調表示またはリンクテキストなどとして定義されます。インラインコンテナの「優先順位」を決定する基本原則は、最初に閉じられたオープナーが優先されるということです。コンテナは重複できないため、オープナーが閉じられると、オープナーとクローザーの間の潜在的なオープナーは通常のテキストとしてマークされ、インライン構文を開くことができなくなります。たとえば、</p>
+<div class="example">
+<div class="djot">
+<pre><code>_This is *regular_ not strong* emphasis</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt;This is *regular&lt;/em&gt; not strong* emphasis&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>最初の強調 <code>_</code> によって開かれた通常の強調は2番目の <code>_</code> によって閉じられ、その時点で強い強調 <code>*</code> は強い強調を開始する資格を失います。</p>
+<div class="example">
+<div class="djot">
+<pre><code>*This is _strong* not regular_ emphasis</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;strong&gt;This is _strong&lt;/strong&gt; not regular_ emphasis&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>逆もまた同じです。</p>
+<p>同様に、</p>
+<div class="example">
+<div class="djot">
+<pre><code>[Link *](url)*</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;url&quot;&gt;Link *&lt;/a&gt;*&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>はリンクの処理だけ行われます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>*Emphasis [*](url)</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;strong&gt;Emphasis [&lt;/strong&gt;](url)&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>リンクは無効です（強い強調が区切り文字 <code>[</code> を超えて終了するため）。</p>
+<p>重複するコンテナは除外されますが、 <em>ネスト（入れ子に）</em> されたコンテナは問題ありません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>_This is *strong within* regular emphasis_</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt;This is &lt;strong&gt;strong within&lt;/strong&gt; regular emphasis&lt;/em&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>曖昧な場合は、区切り文字をオープナー <code>{</code> またはクローザー <code>}</code> としてマークに使用される場合があります。したがって、 <code>{_</code> は <code>_</code> のように動作しますが、強調を開くことしかできません。一方 <code>_}</code> は <code>_</code> のように動作しますが強調を閉じることしかできません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>{_Emphasized_}
+_}not emphasized{_</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt;Emphasized&lt;/em&gt;
+_}not emphasized{_&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>明示的にマークされたクローザーは明示的にマークされたオープナーとのみ一致し、マークされていないクローザーはマークされていないオープナーのみと一致します（したがって、たとえば <code>{_hi_)</code> は強調を生成しません）。</p>
+<p>特定のクローザーと一致する可能性のあるオープナーが複数ある場合は、最も近いものが使用されます。例えば：</p>
+<div class="example">
+<div class="djot">
+<pre><code>*not strong *strong*</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;*not strong &lt;strong&gt;strong&lt;/strong&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="ordinary-text" class="level3">
+<h3>通常テキスト</h3>
+<p>特別な意味が与えられていないものはすべてリテラルなテキストとして解析されます。</p>
+<p>すべてのASCII句読点文字（djotで特別な意味を持たないものであっても）はバックスラッシュでエスケープできます。したがって、<code>\*</code> はリテラル文字 <code>*</code> が含まれます。ASCII句読点文字以外の文字の前のバックスラッシュは、次の例外を除き、リテラルのバックスラッシュとして扱われます。</p>
+<ul>
+<li>改行の前（または改行に続く空白またはタブの前）のバックスラッシュは、<em>ハード改行</em>として解析されます。この場合、バックスラッシュの前の空白とタブ文字は無視されます。</li>
+<li>空白の前のバックスラッシュは<em>非改行空白</em>として解析されます。</li>
+</ul>
+</section>
+<section id="link" class="level3">
+<h3>リンク</h3>
+<p>リンクには、<em>インライン</em>リンクと<em>参照</em>リンクの2種類があります。</p>
+<p>どちらの種類も <code>[ … ]</code> の内側でリンクテキスト（任意のインライン形式が含まれる場合があります）から始まります。</p>
+<p><em>インラインリンク</em>には、括弧内にリンク先 <code>(URL)</code> が含まれます。リンクテキスト末尾の <code>]</code> とリンク先を定義するオープナー <code>(</code> の間に空白を入れてはいけません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>[My link text](http://example.com)</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;http://example.com&quot;&gt;My link text&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>URLは複数行に分かれている場合があります。この場合改行が行われ先頭と末尾の空白は無視され行が連結されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>[My link text](http://example.com?product_number=234234234234
+234234234234)</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;http://example.com?product_number=234234234234234234234234&quot;&gt;My link text&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p><em>参照リンク</em>では括弧内の宛先ではなく角括弧内の参照ラベルを使用します。これはリンクテキストの直後に置く必要があります。</p>
+<div class="example">
+<div class="djot">
+<pre><code>[My link text][foo bar]
+
+[foo bar]: http://example.com</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;http://example.com&quot;&gt;My link text&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>参照ラベルはドキュメント内のどこかで定義する必要があります。以下の<a href="#reference-link-definition">参照リンクの定義</a>を参照してください。ただしリンクの解析は「ローカル」でありラベルが定義されているかどうかには依存しません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>[foo][bar]</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a&gt;foo&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>ラベルがない場合、リンクテキストはリンクテキストだけでなく参照ラベルとしても解釈されます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>[My link text][]
+
+[My link text]: /url</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;/url&quot;&gt;My link text&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="image" class="level3">
+<h3>画像</h3>
+<p>画像はリンクと同じように機能しますが、接頭辞 <code>!</code> が付いています。リンクと同様にインラインバリアントと参照バリアントの両方が可能です。</p>
+<div class="example">
+<div class="djot">
+<pre><code>![picture of a cat](cat.jpg)
+
+![picture of a cat][cat]
+
+![cat][]
+
+[cat]: feline.jpg</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;img alt=&quot;picture of a cat&quot; src=&quot;cat.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;picture of a cat&quot; src=&quot;feline.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;cat&quot; src=&quot;feline.jpg&quot;&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="autolink" class="level3">
+<h3>自動リンク</h3>
+<p> <code><</code> … <code>></code> で囲まれたURLまたはメールアドレスはハイパーリンクになります。中括弧間の内容は文字通りに扱われます（バックスラッシュエスケープは使用できません）。</p>
+<div class="example">
+<div class="djot">
+<pre><code>&lt;https://pandoc.org/lua-filters&gt;
+&lt;me@example.com&gt;</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;https://pandoc.org/lua-filters&quot;&gt;https://pandoc.org/lua-filters&lt;/a&gt;
+&lt;a href=&quot;mailto:me@example.com&quot;&gt;me@example.com&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>URLまたはメールアドレスには改行を含めることはできません。</p>
+</section>
+<section id="verbatim" class="level3">
+<h3>Verbatim</h3>
+<p>Verbatimコンテンツは、連続するバックティック文字（<code>`</code>）の文字列で始まり、同じ数が連続するバックティック文字の文字列で終わります。</p>
+<div class="example">
+<div class="djot">
+<pre><code>``Verbatim with a backtick` character``
+`Verbatim with three backticks ``` character`</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;code&gt;Verbatim with a backtick` character&lt;/code&gt;
+&lt;code&gt;Verbatim with three backticks ``` character&lt;/code&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>バックティック間の内容はVerbatimテキストとして扱われます（そこではバックスラッシュ エスケープは機能しません）。</p>
+<p>コンテンツがバックティック文字で開始または終了する場合、開始または終了バックティックとコンテンツの間の1つの空白が削除されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>`` `foo` ``</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;code&gt;`foo`&lt;/code&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>インラインとして解析されるテキストが、終了バックティック文字列に遭遇する前に終了する場合、Verbatimテキストは最後まで続きます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>`foo bar</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;code&gt;foo bar&lt;/code&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="emphasisstrong" class="level3">
+<h3>強調と強い強調（Emphasis/strong）</h3>
+<p>強調されたインラインコンテンツは <code>_</code> で囲みます。強い強調は <code>*</code> で囲みます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>_emphasized text_
+
+*strong emphasis*</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt;emphasized text&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;strong emphasis&lt;/strong&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>また <code>_</code> は <code>*</code> 直後に空白が続かない場合にのみ強調を開始できます。強調を閉じることができるのは、直前に空白がない場合、および開始文字と終了文字の間に区切り文字以外の文字がある場合のみです。</p>
+<div class="example">
+<div class="djot">
+<pre><code>_ Not emphasized (spaces). _
+
+___ (not an emphasized `_` character)</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;_ Not emphasized (spaces). _&lt;/p&gt;
+&lt;p&gt;___ (not an emphasized &lt;code&gt;_&lt;/code&gt; character)&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>強調はネスト（入れ子に）することができます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>__emphasis inside_ emphasis_</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt;&lt;em&gt;emphasis inside&lt;/em&gt; emphasis&lt;/em&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>中括弧 <code>{</code> は <code>_</code> または <code>*</code> をオープナーまたはクローザーとして強制的に解釈するために使用できます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>{_ this is emphasized, despite the spaces! _}</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;em&gt; this is emphasized, despite the spaces! &lt;/em&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="highlighted" class="level3">
+<h3>ハイライト（mark）</h3>
+<p> <code>{=</code> と <code>=}</code> の間のインライン コンテンツは、強調表示されたテキストとして扱われます（HTMLでの <code>&lt;mark&gt;</code>）。 <code>{</code> と <code>}</code> は必須であることに注意してください。</p>
+<div class="example">
+<div class="djot">
+<pre><code>This is {=highlighted text=}.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;This is &lt;mark&gt;highlighted text&lt;/mark&gt;.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="supersubscript" class="level3">
+<h3>上付きと下付き（Super/subscript）</h3>
+<p>上付き文字は <code>^</code> で囲みます、下付き文字は <code>~</code> です。</p>
+<div class="example">
+<div class="djot">
+<pre><code>H~2~O and djot^TM^</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O and djot&lt;sup&gt;TM&lt;/sup&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>中括弧を使用することもできますが、必須ではありません:</p>
+<div class="example">
+<div class="djot">
+<pre><code>H{~one two buckle my shoe~}O</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;H&lt;sub&gt;one two buckle my shoe&lt;/sub&gt;O&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="insertdelete" class="level3">
+<h3>挿入と取り消し線（Insert/delete）</h3>
+<p>インラインテキストを挿入済みとしてマークするには、 <code>{+</code> と <code>+}</code> を使用します。削除済みとしてマークするには、 <code>{-</code> と <code>-}</code> を使用します。 <code>{</code> と <code>}</code> は必須です。</p>
+<div class="example">
+<div class="djot">
+<pre><code>My boss is {-mean-}{+nice+}.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;My boss is &lt;del&gt;mean&lt;/del&gt;&lt;ins&gt;nice&lt;/ins&gt;.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="smart-punctuation" class="level3">
+<h3>スマート句読点</h3>
+<p>直線の二重引用符（<code>&quot;</code>）と一重引用符（<code>&#39;</code>）は中引用符として解析されます。Djotは、文脈からどの方向の引用が必要かを判断するのが非常に上手です。</p>
+<div class="example">
+<div class="djot">
+<pre><code>&quot;Hello,&quot; said the spider.
+&quot;&#39;Shelob&#39; is my name.&quot;</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&amp;ldquo;Hello,&amp;rdquo; said the spider.
+&amp;ldquo;&amp;lsquo;Shelob&amp;rsquo; is my name.&amp;rdquo;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>ただし、そのヒューリスティックは中かっこを使用した引用符をオープナー <code>{&quot;</code> またはクローザー <code>&quot;}</code> としてマークすることでオーバーライドできます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>&#39;}Tis Socrates&#39; season to be jolly!</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&amp;rsquo;Tis Socrates&amp;rsquo; season to be jolly!&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>直接引用符が必要な場合は、バックスラッシュとエスケープを使用します:</p>
+<div class="example">
+<div class="djot">
+<pre><code>5\&#39;11\&quot;</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;5&#39;11&quot;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>ピリオド3つのシーケンスは <em>ellipses</em> として解析されます。 <code>...</code> </p>
+<p>ハイフン3つのシーケンスは <em>em-dash</em> として解析されます。 <code>—</code> </p>
+<p>ハイフン2つのシーケンスは <em>en-dash</em> として解析されます。 <code>--</code> </p>
+<div class="example">
+<div class="djot">
+<pre><code>57--33 oxen---and no sheep...</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;57&amp;ndash;33 oxen&amp;mdash;and no sheep&amp;hellip;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>より長いハイフンのシーケンスは、全角ダッシュ、半角ダッシュ、およびハイフンに分割されます。可能であれば均一に、どちらの方法でも均一性が達成できる場合は、全角ダッシュを使用することを推奨します。（つまり、4つのハイフンは2つの半角ダッシュになり、6つのハイフンは2つの半角ダッシュになります）。</p>
+<div class="example">
+<div class="djot">
+<pre><code>a----b c------d</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;a&amp;ndash;&amp;ndash;b c&amp;mdash;&amp;mdash;d&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="math" class="level3">
+<h3>数式</h3>
+<p>LaTeX数式を含めるには、その数式をVerbatimスパンに入れ、その先頭に <code>$</code> （インラインの場合）または <code>$$</code> （数式表示の場合）を付けます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>Einstein derived $`e=mc^2`.
+Pythagoras proved
+$$` x^n + y^n = z^n `</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Einstein derived &lt;span class=&quot;math inline&quot;&gt;\(e=mc^2\)&lt;/span&gt;.
+Pythagoras proved
+&lt;span class=&quot;math display&quot;&gt;\[ x^n + y^n = z^n \]&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="footnote-reference" class="level3">
+<h3>脚注参照</h3>
+<p>脚注参照は、 <code>[^参照ラベル]</code> 形式を用います。</p>
+<div class="example">
+<div class="djot">
+<pre><code>Here is the reference.[^foo]
+
+[^foo]: And here is the note.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Here is the reference.&lt;a id=&quot;fnref1&quot; href=&quot;#fn1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;section role=&quot;doc-endnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn1&quot;&gt;
+&lt;p&gt;And here is the note.&lt;a href=&quot;#fnref1&quot; role=&quot;doc-backlink&quot;&gt;↩︎︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+<p>脚注自体の構文については、以下の<a href="#footnote">脚注</a>を参照してください。</p>
+</section>
+<section id="line-break" class="level3">
+<h3>改行</h3>
+<p>インラインコンテンツ内の改行は「ソフト」改行として扱われます。これらは空白として、または（HTMLなど、改行が意味的に空白のように扱われるコンテキストでは）改行としてレンダリングされる場合があります。</p>
+<p>ハード改行（HTMLでの <code>&lt;br&gt;</code>）を行うには、「バックスラッシュ + 改行」を使用します:</p>
+<div class="example">
+<div class="djot">
+<pre><code>This is a soft
+break and this is a hard\
+break.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;This is a soft
+break and this is a hard&lt;br&gt;
+break.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="comment" class="level3">
+<h3>コメント</h3>
+<p>属性内で <code>%</code> に挟まれた内容はコメントとして扱われます。これにより属性にコメントを追加できるようになります:</p>
+<div class="example">
+<div class="djot">
+<pre><code>{#ident % later we&#39;ll add a class %}</code></pre>
+</div>
+<div class="html">
+<pre><code></code></pre>
+</div>
+</div>
+<p>ただし、コメントを追加する一般的な方法としても機能します。コメントのみを含む属性指定子を使用してください:</p>
+<div class="example">
+<div class="djot">
+<pre><code>Foo bar {% This is a comment, spanning
+multiple lines %} baz.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Foo bar  baz.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="symbols" class="level3">
+<h3>記号</h3>
+<p>単語を記号 <code>:</code> で囲むと「記号」が作成され、デフォルトでは文字通りに表示されるだけですが、フィルターによって特別に処理される場合があります。（たとえば、フィルターを使用して記号を絵文字に変換できます。ただし、これはdjotには組み込まれていません）。</p>
+<div class="example">
+<div class="djot">
+<pre><code>My reaction is :+1: :smiley:.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;My reaction is 👍 😃.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="raw-inline" class="level3">
+<h3>Rawインライン</h3>
+<p>任意の形式のRawインラインコンテンツは、Verbatimスパンとそれに続く次の文字列を使用して含めることができます <code>{=FORMAT}</code> :</p>
+<div class="example">
+<div class="djot">
+<pre><code>This is `&lt;?php echo &#39;Hello world!&#39; ?&gt;`{=html}.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;This is &lt;?php echo &#39;Hello world!&#39; ?&gt;.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>このコンテンツは、指定された形式をレンダリングするときにそのまま渡されるように意図されていますが、それ以外の場合は無視されます。</p>
+</section>
+<section id="span" class="level3">
+<h3>スパン</h3>
+<p>リンクや画像ではなく、直後に属性が続く角括弧内のテキストは、一般的なスパンとして扱われます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>It can be helpful to [read the manual]{.big .red}.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;It can be helpful to &lt;span class=&quot;big red&quot;&gt;read the manual&lt;/span&gt;.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="inline-attributes" class="level3">
+<h3>インライン属性</h3>
+<p>属性は中括弧内に配置され、属性を付加したいインライン要素の <em>直後</em> に置く必要があります（空白は入れません）。</p>
+<p>中括弧内では、次の構文を使用できます:</p>
+<ul>
+<li> <code>.foo</code> は <code>foo</code> クラスとして指定します。この方法で複数のクラスを指定でき、それらは結合されます。</li>
+<li> <code>#foo</code> は <code>foo</code> 識別子として指定します。要素は識別子を1つだけ持つことができます。複数の識別子が指定された場合は、最後の識別子が使用されます。</li>
+<li> <code>key=&quot;value&quot;</code> または、 <code>key=value</code> はkey-value属性を指定します。値がすべてASCII英数字で構成されている場合、 <code>_</code> 、 <code>:</code> 、 <code>-</code> で構成されている場合、引用符は必要ありません。バックスラッシュエスケープは引用符で囲まれた値の内部で使用できます。</li>
+<li> <code>%</code> コメントが始まり、次の属性 <code>%</code> または属性の終わり（<code>}</code>）で終わります。</li>
+</ul>
+<p>属性指定子には改行が含まれる場合があります。</p>
+<p>例:</p>
+<div class="example">
+<div class="djot">
+<pre><code>An attribute on _emphasized text_{#foo
+.bar .baz key=&quot;my value&quot;}</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;An attribute on &lt;em class=&quot;bar baz&quot; id=&quot;foo&quot; key=&quot;my value&quot;&gt;emphasized text&lt;/em&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>属性指定子は「stacked」（積み重ねること）ができ、その場合は結合されます。したがって、</p>
+<div class="example">
+<div class="djot">
+<pre><code>avant{lang=fr}{.blue}</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;span class=&quot;blue&quot; lang=&quot;fr&quot;&gt;avant&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>は、以下と同じです</p>
+<div class="example">
+<div class="djot">
+<pre><code>avant{lang=fr .blue}</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;span class=&quot;blue&quot; lang=&quot;fr&quot;&gt;avant&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="block-syntax" class="level2">
+<h2>ブロック構文</h2>
+<p>commonmarkと同様に、ブロック構造はインライン解析の前に識別でき、インライン構造よりも優先されます。</p>
+<p>実際、ブロックはバックトラックなしで行ごとに解析できます。行がブロックレベルの構造に与える影響は、将来の行に依存することはありません。</p>
+<p>インデントは、リスト項目または脚注のネストの場合にのみ重要です。</p>
+<p>ブロックレベルの項目は空白行で区切る必要があります。2つのブロックレベル要素が隣接する場合があります。たとえば、水平線またはフェンスで囲まれたコードブロックの直後に段落が続くことがあります。実際、行ごとに解析できる可能性があるため、ブロックレベル要素の後に空白行を入れる必要はありません。ただし、読みやすさを考慮して、ブロックレベルの要素は <em>常に</em> 空行で区切ることをお勧めします。段落は他のブロックレベルの要素によって中断されることはなく、常に空行（または文書またはそれを含む要素の終わり）で終了する必要があります。</p>
+<section id="paragraph" class="level3">
+<h3>段落</h3>
+<p>段落は、他のブロックレベル要素の1つであるための条件を満たさない、一連の非空白行です。テキストコンテンツは、一連のインライン要素として解析されます。改行はソフト改行として扱われ、書式設定された出力では空白と同様に解釈されます。段落は空白行または文書の終わりで終わります。</p>
+</section>
+<section id="heading" class="level3">
+<h3>見出し</h3>
+<p>見出しは1つ以上の <code>#</code> 文字シーケンスで始まり、その後に空白が続きます。 <code>#</code> 文字の数によって見出しレベルは定義されます。次のテキストはインラインコンテンツとして解析されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>## A level _two_ heading!</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;section id=&quot;A-level-two-heading&quot;&gt;
+&lt;h2&gt;A level &lt;em&gt;two&lt;/em&gt; heading!&lt;/h2&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+<p>
+見出しテキストは後続の行にまたがる場合があり、その前に同じ数の <code>#</code> 文字が続く場合もあります（ただし、省略することもできます）。</p>
+<p>見出しは、空行（または文書またはそれを囲んでいるコンテナの終わり）に達すると終了します。</p>
+<div class="example">
+<div class="djot">
+<pre><code># A heading that
+# takes up
+# three lines
+
+A paragraph, finally</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;section id=&quot;A-heading-that-takes-up-three-lines&quot;&gt;
+&lt;h1&gt;A heading that
+takes up
+three lines&lt;/h1&gt;
+&lt;p&gt;A paragraph, finally&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+<div class="example">
+<div class="djot">
+<pre><code># A heading that
+takes up
+three lines
+
+A paragraph, finally.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;section id=&quot;A-heading-that-takes-up-three-lines&quot;&gt;
+&lt;h1&gt;A heading that
+takes up
+three lines&lt;/h1&gt;
+&lt;p&gt;A paragraph, finally.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="block-quote" class="level3">
+<h3>引用ブロック（Block quote）</h3>
+<p>引用ブロックは、各行が <code>&gt;</code> で始まり、その後に空白または行末が続く一連の行です。引用ブロック内のコンテンツ（最初の <code>&gt;</code> を除く）は、ブロックレベルのコンテンツとして解析されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>&gt; This is a block quote.
+&gt;
+&gt; 1. with a
+&gt; 2. list in it.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;blockquote&gt;
+&lt;p&gt;This is a block quote.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+with a
+&lt;/li&gt;
+&lt;li&gt;
+list in it.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+</code></pre>
+</div>
+</div>
+<p>Markdownと同様に、段落はじまり行の前を除き、引用ブロック内の通常段落行から <code>&gt;</code> プレフィックスを省略することができます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>&gt; This is a block
+quote.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;blockquote&gt;
+&lt;p&gt;This is a block
+quote.&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="list-item" class="level3">
+<h3>リスト項目</h3>
+<p>リスト項目は、リストマーカー、空白（または改行）、リストマーカーに対してインデントされた1つ以上の行で構成されます。例えば:</p>
+<div class="example">
+<div class="djot">
+<pre><code>1.  This is a
+ list item.
+
+ &gt; containing a block quote</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;This is a
+list item.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;containing a block quote&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+</div>
+</div>
+<p>段落の開始行に続く段落行では、インデントが省略される場合があります:</p>
+<div class="example">
+<div class="djot">
+<pre><code>1.  This is a
+list item.
+
+  Second paragraph under the
+list item.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;This is a
+list item.&lt;/p&gt;
+&lt;p&gt;Second paragraph under the
+list item.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+</div>
+</div>
+<p>次の基本的なタイプのリストマーカーを使用できます:</p>
+<table>
+<thead>
+<tr class="header">
+<th>マーカー</th>
+<th>リストの種類</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td> <code>-</code> </td>
+<td>bullet</td>
+</tr>
+<tr class="even">
+<td> <code>+</code> </td>
+<td>bullet</td>
+</tr>
+<tr class="odd">
+<td> <code>*</code> </td>
+<td>bullet</td>
+</tr>
+<tr class="even">
+<td> <code>1.</code> </td>
+<td>順序付き、10進数、直後にピリオド</td>
+</tr>
+<tr class="odd">
+<td> <code>1)</code> </td>
+<td>順序付き、10進数、直後に終わり括弧</td>
+</tr>
+<tr class="even">
+<td> <code>(1)</code> </td>
+<td>順序付き、10進数、括弧で挟む</td>
+</tr>
+<tr class="odd">
+<td> <code>a.</code> </td>
+<td>順序付き、アルファベット小文字、直後にピリオド</td>
+</tr>
+<tr class="even">
+<td> <code>a)</code> </td>
+<td>順序付き、アルファベット小文字、直後に終わり括弧</td>
+</tr>
+<tr class="odd">
+<td> <code>(a)</code> </td>
+<td>順序付き、アルファベット小文字、括弧で挟む</td>
+</tr>
+<tr class="even">
+<td> <code>A.</code> </td>
+<td>順序付き、アルファベット大文字、直後にピリオド</td>
+</tr>
+<tr class="odd">
+<td> <code>A)</code> </td>
+<td>順序付き、アルファベット大文字、直後に終わり括弧</td>
+</tr>
+<tr class="even">
+<td> <code>(A)</code> </td>
+<td>順序付き、アルファベット大文字、括弧で挟む</td>
+</tr>
+<tr class="odd">
+<td> <code>i.</code> </td>
+<td>順序付き、ローマ数字小文字、直後にピリオド</td>
+</tr>
+<tr class="even">
+<td> <code>i)</code> </td>
+<td>順序付き、ローマ数字小文字、直後に終わり括弧</td>
+</tr>
+<tr class="odd">
+<td> <code>(i)</code> </td>
+<td>順序付き、ローマ数字小文字、括弧で挟む</td>
+</tr>
+<tr class="even">
+<td> <code>I.</code> </td>
+<td>順序付き、ローマ数字大文字、直後にピリオド</td>
+</tr>
+<tr class="odd">
+<td> <code>I)</code> </td>
+<td>順序付き、ローマ数字大文字、直後に終わり括弧</td>
+</tr>
+<tr class="even">
+<td> <code>(I)</code> </td>
+<td>順序付き、ローマ数字大文字、括弧で挟む</td>
+</tr>
+<tr class="odd">
+<td> <code>:</code> </td>
+<td>定義語</td>
+</tr>
+<tr class="even">
+<td> <code>- [ ]</code> </td>
+<td>タスク</td>
+</tr>
+</tbody>
+</table>
+<p>順序付きリストマーカーは、一連の任意の番号を使用できます: したがって <code>(xix)</code> および <code>v)</code> は、どちらも有効なローマ字小文字列挙マーカーであり、<code>v)</code> は有効なアルファベット小文字列挙マーカー <em>でも</em> あります。</p>
+<section id="task-list-item" class="level4">
+<h4>タスクリスト項目</h4>
+<p><code>[ ]</code> 、 <code>[X]</code> または <code>[x]</code> の後に空白で続く箇条書きリスト項目は、チェックされていない（<code>[ ]</code>）かチェックされている（<code>[X]</code> または <code>[x]</code>）かのタスクリスト項目です。</p>
+</section>
+<section id="definition-list-item" class="level4">
+<h4>定義リスト項目</h4>
+<p>定義リスト項目では、マーカー <code>:</code> の後の最初の行がインラインコンテンツとして解析され、定義された <em>用語</em> とみなされ、項目に含まれるそれ以上のブロックは <em>定義</em> とみなされます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>: orange
+
+  A citrus fruit.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;dl&gt;
+&lt;dt&gt;orange&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;A citrus fruit.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="list" class="level3">
+<h3>リスト</h3>
+<p>リストは、単純に同じタイプのリスト項目シーケンスです（上の表の各行が種類を定義します）。順序付きリストのスタイルまたは箇条書きを変更すると、1つのリストが停止し、新しいリストが開始されることに注意してください。したがって、次のリスト項目は4つの異なるリストにグループ化されます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>i) one
+i. one (style change)
++ bullet
+* bullet (style change)</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ol start=&quot;9&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+one
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol start=&quot;9&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+one (style change)
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+bullet
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+bullet (style change)
+&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+</div>
+<p>リスト項目の種類が曖昧な場合があります。この場合、可能であればリストを継続する方法で曖昧さが解決されます。たとえば、</p>
+<div class="example">
+<div class="djot">
+<pre><code>i. item
+j. next item</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ol start=&quot;9&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+item
+&lt;/li&gt;
+&lt;li&gt;
+next item
+&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+</div>
+</div>
+<p>最初の項目は、ローマ字小文字列挙とアルファベット小文字列挙の間で曖昧です。ただし、次の項目では後者の解釈のみが機能するため、2つの別々のリストよりも1つの連続したリストを作成できる読み方を好みます。</p>
+<p>順序付きリストの開始番号は、その最初の項目の番号によって決まります。後続の項目の数は関係ありません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>5) five
+8) six</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;
+five
+&lt;/li&gt;
+&lt;li&gt;
+six
+&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+</div>
+</div>
+<p>項目間または項目内のブロック間に空白行が含まれていないリストは、 <em>厳密に</em> （tightとして）分類されます。リストの先頭または末尾にある空白行は、厳密さの対象にはなりません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>- one
+- two
+
+  - sub
+  - sub</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ul&gt;
+&lt;li&gt;
+one
+&lt;/li&gt;
+&lt;li&gt;
+two
+&lt;ul&gt;
+&lt;li&gt;
+sub
+&lt;/li&gt;
+&lt;li&gt;
+sub
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+</div>
+<p>厳密でないリストは <em>緩い</em> （looseな）リストです。この区別の意図された重要性は、項目間の空白を減らして厳密（タイト）なリストを表示する必要があることです。</p>
+<div class="example">
+<div class="djot">
+<pre><code>- one
+
+- two</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;one&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;two&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="code-block" class="level3">
+<h3>コードブロック</h3>
+<p>コードブロックは3つ以上の連続したバックティックの行で始まります。オプションで言語指定子が付与される場合もありますが、それだけです（オプションで、言語指定子の前および後に空白を付けることができます）。
+コードブロックは、バックティック「フェンス」の開始と同じか、それ以上の数のバックティック行で終了、そのような行がない場合は、文書または囲んでいるブロックの終了で終わります。
+コンテンツはverbatimテキストとして解釈されます。
+コンテンツにバックティック行が含まれている場合は、「フェンス」として用いたバックティックより多い数を指定してください:</p>
+<div class="example">
+<div class="djot">
+<pre><code>````
+This is how you do a code block:
+
+``` ruby
+x = 5 * 6
+```
+````</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;pre&gt;&lt;code&gt;This is how you do a code block:
+
+``` ruby
+x = 5 * 6
+```
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+</div>
+</div>
+<p>以下は、親コンテナが閉じられたときに暗黙的に閉じられるコードブロックの例です;</p>
+<div class="example">
+<div class="djot">
+<pre><code>&gt; ```
+&gt; code in a
+&gt; block quote
+
+Paragraph.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;code in a
+block quote
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Paragraph.&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="thematic-break" class="level3">
+<h3>水平線（hr）</h3>
+<p>3つ以上の <code>*</code> か <code>-</code> を含み、他に何も（空白やタブを除く）処理されない行は、水平線（HTMLでの <code>&lt;hr&gt;</code>）です。Markdownとは異なり、水平線（テーマの区切り）はインデントされる場合があります:</p>
+<div class="example">
+<div class="djot">
+<pre><code>Then they went to sleep.
+
+      * * * *
+
+When they woke up, ...</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Then they went to sleep.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;When they woke up, &amp;hellip;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="raw-block" class="level3">
+<h3>Raw ブロック</h3>
+<p> <code>=FORMAT</code> と記述されたコードブロックは、通常言語仕様が記述されるところですが、 <code>FORMAT</code> のRawコンテンツとして解釈され、そのフォーマットで出力するためにそのまま渡されます。例えば:</p>
+<div class="example">
+<div class="djot">
+<pre><code>``` =html
+&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+  &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+```</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+  &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="div" class="level3">
+<h3>Div</h3>
+<p>divは3つ以上の連続するコロン（<code>:::</code>）の行で始まり、必要に応じて空白とクラス名が続きます（ただし、これだけです）。これは、少なくともフェンスの開始と同じ数の連続したコロンの行で終わるか、文書またはブロックコンテナの終わりで終わります。</p>
+<p>divのコンテンツはブロックレベルコンテンツとして解釈されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>::: warning
+Here is a paragraph.
+
+And here is another.
+:::</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;div class=&quot;warning&quot;&gt;
+&lt;p&gt;Here is a paragraph.&lt;/p&gt;
+&lt;p&gt;And here is another.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="pipe-table" class="level3">
+<h3>パイプテーブル</h3>
+<p>パイプテーブルは一連の <em>行</em> で構成されます。各行はパイプ文字（<code>|</code>）で始まりパイプ文字で終わり、パイプ文字（<code>|</code>）で区切られた1つ以上の <em>セル</em> が含まれます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>| 1 | 2 |</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</div>
+<p> <em>区切り線</em> <code>-</code> は、すべてのセルが1つ以上の文字のシーケンスで構成されている行で、オプションで接頭辞または接尾辞に <code>:</code> が付けられます。</p>
+<p>区切り線が見つかると、前の行がヘッダーとして扱われ、その行と後続の行の配置は区切り線によって決まります（新しいヘッダーが見つかるまで）。区切り線自体は、解析されたテーブルに行を追加しません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>| fruit  | price |
+|--------|------:|
+| apple  |     4 |
+| banana |    10 |</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;fruit&lt;/th&gt;
+&lt;th style=&quot;text-align: right;&quot;&gt;price&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;apple&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;banana&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</div>
+<p>列の配置は、次のように区切り線によって決まります:</p>
+<ul>
+<li>行が <code>-</code> がで始まり <code>:</code> で終わらない場合、列は左揃えになります</li>
+<li><code>:</code> で終わり、 <code>:</code> で始まらない場合、列は右揃えになります</li>
+<li>始まりと終わりの両方が <code>:</code> である場合、列は中央揃えになります</li>
+<li><code>:</code> で始まらず、終わらない場合、列はデフォルトで揃えられます（均一化）</li>
+</ul>
+<p>以下に例を示します:</p>
+<div class="example">
+<div class="djot">
+<pre><code>| a  |  b |
+|----|:--:|
+| 1  | 2  |
+|:---|---:|
+| 3  | 4  |</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;a&lt;/th&gt;
+&lt;th style=&quot;text-align: center;&quot;&gt;b&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align: left;&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align: right;&quot;&gt;2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: left;&quot;&gt;3&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</div>
+<p> <code>a</code> と <code>b</code> はヘッダーで、左の列はデフォルトで揃えられ、右の列は中央揃えで配置されます。 <code>1</code> と <code>2</code> を含む次の実際の2行もヘッダーであり、左の列は左揃え、右の列は右揃えになります。この配置は <code>3</code> と <code>4</code> を含む後続の行にも適用されます。</p>
+<p>テーブルにヘッダーが不要な場合: 区切り線を省略するか、（列の配置を指定する必要がある場合)区切り線から <em>開始</em> します:</p>
+<div class="example">
+<div class="djot">
+<pre><code>|:--|---:|
+| x | 2  |</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: left;&quot;&gt;x&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</div>
+<p>テーブルのセル内コンテンツはインラインとして解析されます。パイプテーブルのセル内ではブロック レベルのコンテンツを使用できません。</p>
+<p>Djotは、バックスラッシュでエスケープされたパイプやverbatimスパン内のパイプを認識できるほど賢いです。これらはセルの区切り文字としてカウントされません:</p>
+<div class="example">
+<div class="djot">
+<pre><code>| just two \| `|` | cells in this table |</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;just two | &lt;code&gt;|&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;cells in this table&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</div>
+<p>次の構文を使用して表にキャプションを追加できます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>^ This is the caption.  It can contain _inline formatting_
+  and can extend over multiple lines, provided they are
+  indented relative to the `^`.</code></pre>
+</div>
+<div class="html">
+<pre><code></code></pre>
+</div>
+</div>
+<p>キャプションは表の直後に置くことも、間に空行を入れることもできます。</p>
+</section>
+<section id="reference-link-definition" class="level3">
+<h3>参照リンクの定義</h3>
+<p>参照リンクの定義は、角括弧で囲まれた参照ラベル、コロン、空白（または改行）とURLで構成されます。URLは複数の行に分割される場合があります（その場合、行は連結され先頭または末尾の空白は削除されます）。URLのチャンク内では空白を含めることはできません。</p>
+<div class="example">
+<div class="djot">
+<pre><code>[google]: https://google.com
+
+[product page]: http://example.com?item=983459873087120394870128370
+  0981234098123048172304</code></pre>
+</div>
+<div class="html">
+<pre> <code></code> </pre>
+</div>
+</div>
+<p>参照ラベルでは大文字と小文字の正規化は行われません。 <code>[link]</code> として定義された参照は、Markdownのように <code>[Link]</code> として使用できません。</p>
+<p>参照定義の属性はリンクに転送されます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>{title=foo}
+[ref]: /url
+
+[ref][]</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;/url&quot; title=&quot;foo&quot;&gt;ref&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>URLは <code>/url</code> 、テキストリンクは「ref」、タイトルは「foo」として生成されます。ただし、同じ属性がリンクと参照定義の両方で定義されている場合は、リンク上の属性が参照定義の属性をオーバーライドします。</p>
+<div class="example">
+<div class="djot">
+<pre><code>{title=foo}
+[ref]: /url
+
+[ref][]{title=bar}</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;&lt;a href=&quot;/url&quot; title=&quot;bar&quot;&gt;ref&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+</div>
+<p>上記は「bar」というタイトルのリンクを取得します。</p>
+</section>
+<section id="footnote" class="level3">
+<h3>脚注</h3>
+<p>脚注は、脚注参照、コロン、その後にメモ内容が続き、参照が開始される列を超えて任意の列にインデントされて構成されます。メモの内容はブロックレベルのコンテンツとして解析されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>Here&#39;s the reference.[^foo]
+
+[^foo]: This is a note
+  with two paragraphs.
+
+  Second paragraph.
+
+  &gt; a block quote in the note.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Here&amp;rsquo;s the reference.&lt;a id=&quot;fnref1&quot; href=&quot;#fn1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;section role=&quot;doc-endnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn1&quot;&gt;
+&lt;p&gt;This is a note
+with two paragraphs.&lt;/p&gt;
+&lt;p&gt;Second paragraph.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;a block quote in the note.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;#fnref1&quot; role=&quot;doc-backlink&quot;&gt;↩︎︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+<p>引用ブロックやリスト項目と同様に、段落の後続行ではインデントを「lazily」省略できます:</p>
+<div class="example">
+<div class="djot">
+<pre><code>Here&#39;s the reference.[^foo]
+
+[^foo]: This is a note
+with two paragraphs.
+
+  Second paragraph must
+be indented, at least in the first line.</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;Here&amp;rsquo;s the reference.&lt;a id=&quot;fnref1&quot; href=&quot;#fn1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;section role=&quot;doc-endnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn1&quot;&gt;
+&lt;p&gt;This is a note
+with two paragraphs.&lt;/p&gt;
+&lt;p&gt;Second paragraph must
+be indented, at least in the first line.&lt;a href=&quot;#fnref1&quot; role=&quot;doc-backlink&quot;&gt;↩︎︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="block-attributes" class="level3">
+<h3>ブロックの属性</h3>
+<p>ブロックレベル要素に属性を付けるには、ブロックの直前の行に属性を付けます。ブロック属性はインライン属性と同じ構文ですが、1行に収まらない場合は、それ以降の行をインデントする必要があります。繰り返し属性指定子を使うことができ、属性は累積されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>{#water}
+{.important .large}
+Don&#39;t forget to turn off the water!
+
+{source=&quot;Iliad&quot;}
+&gt; Sing, muse, of the wrath of Achilles</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p class=&quot;important large&quot; id=&quot;water&quot;&gt;Don&amp;rsquo;t forget to turn off the water!&lt;/p&gt;
+&lt;blockquote source=&quot;Iliad&quot;&gt;
+&lt;p&gt;Sing, muse, of the wrath of Achilles&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="links-to-headings" class="level3">
+<h3>見出しへのリンク</h3>
+<p>識別子は、明示的な識別子が付加されていない見出しに自動的に追加されます。識別子は、見出しのテキスト内容を取得し、句読点（<code>_</code> と <code>-</code> 以外）を削除し、空白を <code>-</code> に置き換え、一意性を保つために必要な場合は数値接尾辞を追加することによって形成されます。</p>
+<div class="example">
+<div class="djot">
+<pre><code>## My heading + auto-identifier</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;section id=&quot;My-heading-auto-identifier&quot;&gt;
+&lt;h2&gt;My heading + auto-identifier&lt;/h2&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+<p>ただし、暗黙的なリンク参照がすべての見出しに対して作成されるため、ほとんどの場合、見出しに割り当てられた識別子を知る必要はありません。したがって、同じ文書内の「Epilogue」というタイトルの見出しにリンクするには、参照リンクを使用するだけです:</p>
+<div class="example">
+<div class="djot">
+<pre><code>See the [Epilogue][].
+
+    * * * *
+
+# Epilogue</code></pre>
+</div>
+<div class="html">
+<pre><code>&lt;p&gt;See the &lt;a href=&quot;#Epilogue&quot;&gt;Epilogue&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;section id=&quot;Epilogue&quot;&gt;
+&lt;h1&gt;Epilogue&lt;/h1&gt;
+&lt;/section&gt;
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="nesting-limits" class="level2">
+<h2>ネストの制限</h2>
+<p>準拠した実装では、スタックのオーバーフローやその他の問題を回避するために、ネストに合理的な制限を課すことができます。たとえば、12レベルを超えるネストを必要とする現実的なドキュメントはほとんどないため、512という制限は完全に安全です。</p>
+</section>
+</section>
+</body>
+</html>

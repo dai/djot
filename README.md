@@ -337,4 +337,3 @@ of a file are djot-formatted text.
 ## License
 
 The code and documentation are released under the MIT license.
-
