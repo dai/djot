@@ -83,7 +83,7 @@ Djotは軽量なマークアップ構文です。この機能のほとんどは[
   ```
   1. list item
 
-  > block quote inside item 1
+    > block quote inside item 1
 
   2. second item
   ```
