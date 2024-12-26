@@ -14,9 +14,9 @@ The project began as an attempt to implement some of the
 ideas I suggested in my essay [Beyond Markdown](https://johnmacfarlane.net/beyond-markdown.html). (See [Rationale](#rationale), below.)
 
 This repository contains a
-[Syntax Description](https://htmlpreview.github.io/?https://github.com/jgm/djot/blob/master/doc/syntax.html),
-a [Cheatsheet](doc/cheatsheet.md), and a
-[Quick Start for Markdown Users](doc/quickstart-for-markdown-users.md)
+[Syntax Description](https://htmlpreview.github.io/?https://github.com/jgm/djot/blob/master/doc/syntax.html) ([ja](https://htmlpreview.github.io/?https://github.com/dai/djot/blob/master/doc/ja-syntax.html)),
+a [Cheatsheet](doc/cheatsheet.md) ([ja](doc/ja-cheatsheet.md)), and a
+[Quick Start for Markdown Users](doc/quickstart-for-markdown-users.md) ([ja](doc/ja-quickstart-for-markdown-users.md))
 that outlines the main differences between djot and Markdown.
 
 You can try djot on the [djot playground](https://djot.net/playground/)
