@@ -1,4 +1,4 @@
-# Djot
+# Djot （[日本語](https://github.com/dai/djot/blob/main/README-ja.md)）
 
 Djot is a light markup syntax. It derives most of its features
 from [commonmark](https://spec.commonmark.org), but it fixes
