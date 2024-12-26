@@ -324,24 +324,10 @@ There are currently six djot implementations:
 - [godjot (Go)](https://github.com/sivukhin/godjot)
 - [djoths (Haskell)](https://github.com/jgm/djoths)
 
-[Here](https://github.com/dcampbell24/djot-implementations) are some benchmarks of these implementations.
-
 djot.lua was the original reference implementation, but
 current development is focused on djot.js, and it is possible
 that djot.lua will not be kept up to date with the latest syntax
 changes.
-
-## Tooling
-
-- [Vim tooling](./editors/vim/) (located in this repo)
-- Visual Studio Code tooling
-  - [djot-vscode](https://github.com/ryanabx/djot-vscode)
-  - [Djot-Marker](https://github.com/wisim3000/Djot-Marker)
-- [Treesitter grammar](https://github.com/treeman/tree-sitter-djot)
-- [Emacs major mode](./editors/emacs/)
-  (located in this repo, requires the treesitter grammar)
-- [Djockey](https://steveasleep.com/djockey/), a static site generator
-  for technical writing and project documentation.
 
 ## File extension
 
