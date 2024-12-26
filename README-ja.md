@@ -37,7 +37,7 @@ Djotは軽量なマークアップ構文です。この機能のほとんどは[
 
 11. これらの目標に合わせて構文は可能な限り単純にする必要があります。したがってたとえば、2つの異なるスタイルの見出しやコードブロックは必要ありません。
 
-* * * 
+* * *
 
 これらの目標が次の決定の動機となりました。
 
@@ -76,11 +76,11 @@ Commonmarkでは、`1.` 以外のマーカーで始まるリストが段落を�
  ## My excessively long section heading is too
 long to fit on one line.
 ```
- 
+
 作業中に、setext-style（下線付き）の見出しを削除して簡素化します。実際には2つの見出し構文は必要ありません（目標11）。
 
 - 目標5を達成するために、非常に単純なルールがあります:  リストマーカーの先頭を超えてインデントされているものはすべてリスト項目に属します。
- 
+
 ```
 1. list item
 
@@ -88,21 +88,21 @@ long to fit on one line.
 
 2. second item
 ```
- 
+
 commonmarkでは、ブロック引用符が十分にインデントされていないため、これはブロック引用符で囲まれた2つの別個のリストとして解析されます。commonmarkでこの単純なルールを使用できなかったのは、インデントされたコードブロックが要因でした。リスト項目にインデントされたコードブロックが含まれる場合、どの列でインデントのカウントを開始するかを知る必要があるため、リストの見栄えを最も良くする列（マーカーの後の空白以外のコンテンツの最初の列）に固定しました。
- 
+
 ```
 1.  A commonmark list item with an indented code block in it.
 
         code!
 ```
- 
+
 djotでは、インデントされたコードブロックを削除するだけです。いずれにせよほとんどの人はフェンスで囲まれたコードブロックを好みます。コードブロックを記述する2つの異なる方法は必要ありません（目標11）。
 
 - 目標6を達成しRaw HTMLを処理するために採用されている複雑なルールを回避するために、明示的にマークされたコンテキストを除きRaw HTMLを許可しません。
 例:  
 `` `<a id="foo">`{=html} `` あるいは
- 
+
 ````
 ``` =html
 <table>
@@ -110,7 +110,7 @@ djotでは、インデントされたコードブロックを削除するだけ�
 </table>
 ```
 ````
- 
+
 Markdownとは異なりdjotはHTML中心ではありません。Djotドキュメントはさまざまな形式でレンダリングされる可能性があるため、生のコンテンツをあらゆる出力形式に含める柔軟性を提供したいと考えていますが、HTMLに特権を与える理由はありません。同様の理由で、commonmarkとは異なり、HTMLエンティティを解釈しません。
 
 - 目標2を達成するために、参照リンクの解析をローカルにします。`[foo][bar]`または`[foo][]`のように見えるものは、`[foo]`が文書の後半で定義されているかどうかに関係なく、参照リンクとして扱われます。したがって、`[like this]`のような括弧1つだけのショートカットリンク構文は削除しなければなりません。周囲の文脈を知らなくても何がリンクであるかは常に明確でなければなりません。
@@ -125,7 +125,7 @@ Markdownとは異なりdjotはHTML中心ではありません。Djotドキュメ
 >This is not a
 >block quote in djot.
 ```
- 
+
 - 目標3を達成するために、強調のために二重文字を使用することは避けます。代わりに `_` 強調や `*` 強い強調を使用します。強調は後に空白が続かない限り、これらの文字1つで開始でき、前に空白がなく、間に異なる文字が存在しない限り、類似の文字が見つかったときに終了します。重複した場合は、最初に閉じられたものが優先されます。（この単純なルールにより、commonmarkでUnicode文字クラスを決定する必要性も回避できます ---目標6）。
 
 - この最後の変更だけを見ても、表現上の盲点が多数発生することになります。たとえば単純なルールを考えると、
@@ -133,35 +133,35 @@ Markdownとは異なりdjotはHTML中心ではありません。Djotドキュメ
 ```
 _(_foo_)_
 ```
- 
+
 は以下のように解析します
- 
+
 ``` html
 <em>(</em>foo<em>)</em>
 ```
- 
+
 それよりも
- 
+
 ``` html
 <em>(<em>foo</em>)</em>
   ```
- 
+
 後者の解釈が必要な場合、djotでは次の構文を使用できます。
- 
+
 ```
 _({_foo_})_
 ```
- 
+
 `{_` は強調を開くだけの `_` であり、`_}` は強調を閉じるだけの `_` です。同じことが `*` やオープナー、クローザー間があいまいなその他インライン書式設定マーカーでも同じです。これらの中括弧は、特定のインラインマークアップ、例えば `{=highlighting=}` 、 `{+insert+}` 、 `{-delete-}` に必要です。
- 
+
 - 目標1をサポートするために、コードスパン解析はバックトラックしません。したがって、コードスパンを開いて閉じないと、段落の終わりまで拡張されます。これは、commonmarkでフェンスドコードブロックが動作する方法と似ています。
- 
+
 ```
 This is `inline code.
 ```
- 
+
 - 目標9をサポートするために汎用属性構文が導入されています。属性はその前の行に配置することで任意のブロックレベルの要素に付加でき、その直後に配置することで任意のインラインレベルの要素に付加できます。
- 
+
 ```
 {#introduction}
 This is the introductory paragraph, with
@@ -169,18 +169,18 @@ an identifier `introduction`.
 
            {.important color="blue" #heading}
 ## heading
- 
+
 The word *atelier*{weight="600"} is French.
 ```
- 
+
 - 汎用属性を使用する予定であるため、リンク内での引用タイトルはサポートされなくなりました。必要に応じて `title` 属性を追加できますが、これはあまり一般的ではないため特別な構文は必要ありません。
- 
+
 ```
 [Link text](url){title="Click me!"}
 ```
- 
+
 - ブロックレベルまたはインラインレベルの要素の任意のシーケンスに属性を付加できるようにするためフェンスで囲まれたdivと括弧で囲まれたスパンが導入されました。例えば、
- 
+
 ```
 {#warning .sidebar}
 ::: Warning
@@ -188,7 +188,7 @@ This is a warning.
 Here is a word in [français]{lang=fr}.
 :::
 ```
- 
+
 ## 構文
 
 完全な構文リファレンスについては、「[構文の説明](https://htmlpreview.github.io/?https://github.com/dai/djot/blob/master/doc/ja-syntax.html)」を参照してください。
@@ -206,7 +206,23 @@ djotのvim構文強調表示定義は、`editors/vim/` で提供されていま�
 - [godjot (Go)](https://github.com/sivukhin/godjot)
 - [djoths (Haskell)](https://github.com/jgm/djoths)
 
+[ここ](https://github.com/dcampbell24/djot-implementations)にはこれら実装のベンチマークがあります。
+
+
 `djot.lua` はオリジナルのリファレンス実装でしたが、現在の開発は `djot.js` に重点を置いており、`djot.lua` が最新の構文変更に対応していない可能性があります。
+
+
+## Tooling
+
+- [Vim tooling](./editors/vim/) (located in this repo)
+- Visual Studio Code tooling
+  - [djot-vscode](https://github.com/ryanabx/djot-vscode)
+  - [Djot-Marker](https://github.com/wisim3000/Djot-Marker)
+- [Treesitter grammar](https://github.com/treeman/tree-sitter-djot)
+- [Emacs major mode](./editors/emacs/)
+  (located in this repo, requires the treesitter grammar)
+- [Djockey](https://steveasleep.com/djockey/), a static site generator
+  for technical writing and project documentation.
 
 ## ファイル拡張子
 
