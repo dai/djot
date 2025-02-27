@@ -29,7 +29,7 @@ Djotは軽量なマークアップ構文です。この機能のほとんどは[
 7. 構文はハード改行に適している必要があります。段落をハード改行することにより、異なる解釈が生じてはなりません（たとえば、ピリオドが続く数字が行頭になる場合など）。（多くの人が、なぜハード改行するのか疑問に思うと思います。  
   答え: HTMLへの変換や、長い行をソフト改行する特別なエディターを使用せずに、文書をそのまま読めるようにするためです。ソースの可読性は1つであったことを思い出してください。MarkdownとCommonmarkの主な目的の一部です）。
 
-8. 構文は次の意味で均一に構成されている必要があります。つまり、一連の行がリスト項目またはブロック引用符の外側で特定の意味を持つ場合、その内側でも同じ意味を持つ必要があります。この原則は[commonmark spec](https://spec.commonmark.org/0.30/#principle-of-uniformity)で明確に示されていますが、この仕様は完全に準拠しているわけではありません（[commonmark/commonmark-spec#634](https://github.com/commonmark/commonmark-spec/issues/634)を参照）。
+8. 構文は次の意味で均一に構成されている必要があります。つまり、一連の行がリスト項目またはブロック引用符の外側で特定の意味を持つ場合、その内側でも同じ意味を持つ必要があります。この原則は [articulated in the commonmark spec](https://spec.commonmark.org/0.30/#principle-of-uniformity)で明確に示されていますが、この仕様は完全に準拠しているわけではありません（commonmark/commonmark-spec#634を参照）。
 
 9. 任意の属性を任意の要素に付加できる必要があります。
 
@@ -197,7 +197,7 @@ djotのvim構文強調表示定義は、`editors/vim/` で提供されていま�
 
 ## 実装
 
-現在、6つのdjot実装があります。
+現在、6つのdjot実装があります: 
 
 - [djot.js (JavaScript/TypeScript)](https://github.com/jgm/djot.js)
 - [djot.lua (Lua)](https://github.com/jgm/djot.lua)
@@ -208,20 +208,18 @@ djotのvim構文強調表示定義は、`editors/vim/` で提供されていま�
 
 [ここ](https://github.com/dcampbell24/djot-implementations)にはこれら実装のベンチマークがあります。
 
-
 `djot.lua` はオリジナルのリファレンス実装でしたが、現在の開発は `djot.js` に重点を置いており、`djot.lua` が最新の構文変更に対応していない可能性があります。
-
 
 ## Tooling
 
-- [Vim tooling](./editors/vim/) (located in this repo)
-- Visual Studio Code tooling
+- [Vim](./editors/vim/) tooling is in this repository
+- [Emacs](./editors/emacs/) tooling is in this repository and requires the tree-sitter grammar
+- [Helix](https://github.com/helix-editor/helix) has built-in syntax highlighting
+- Visual Studio Code
   - [djot-vscode](https://github.com/ryanabx/djot-vscode)
   - [Djot-Marker](https://github.com/wisim3000/Djot-Marker)
 - [Treesitter grammar](https://github.com/treeman/tree-sitter-djot)
-- [Emacs major mode](./editors/emacs/)
-  (located in this repo, requires the treesitter grammar)
-- [Djockey](https://steveasleep.com/djockey/), a static site generator
+- [Djockey](https://steveasleep.com/djockey/) is a static site generator
   for technical writing and project documentation.
 
 ## ファイル拡張子
